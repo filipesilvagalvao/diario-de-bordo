@@ -2,8 +2,9 @@ const Delete = (e) => {
     const logbook = JSON.parse(localStorage.getItem("logbook")) || []
 
     if (logbook?.length > 0) {
+        const card = e.target.closest(".logbook__card")
         const flogbook = logbook.filter((lb) => {
-            return lb.id !== e.target.parentElement.dataset.id
+            return lb.id !== card.dataset.id
         })
 
         localStorage.setItem("logbook", JSON.stringify(flogbook))
@@ -24,7 +25,7 @@ const Render_Cards = () => {
                 <h3>${lb.title}</h3>
                 <data value="${lb.date}">${lb.date}</data>
                 <p>${lb.description}</p>
-                <button>Delete</button>
+                <button class="logbook__cardDelete"><i class="fa-solid fa-trash"></i> Deletar</button>
             </div>
             `
         });
