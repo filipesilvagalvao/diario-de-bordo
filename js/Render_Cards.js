@@ -1,11 +1,23 @@
-import { Delete } from "./Delete.js"
-const Render_Cards = () => {
-    const logbook__list = document.querySelector(".logbook__list")
+const Delete = (e) => {
     const logbook = JSON.parse(localStorage.getItem("logbook")) || []
 
     if (logbook?.length > 0) {
+        const flogbook = logbook.filter((lb) => {
+            return lb.id !== e.target.parentElement.dataset.id
+        })
 
-        logbook__list.innerHTML = ""
+        localStorage.setItem("logbook", JSON.stringify(flogbook))
+
+        Render_Cards()
+    }
+}
+
+const Render_Cards = () => {
+    const logbook__list = document.querySelector(".logbook__list")
+    const logbook = JSON.parse(localStorage.getItem("logbook")) || []
+    logbook__list.innerHTML = ""
+
+    if (logbook?.length > 0) {
         logbook.forEach(lb => {
             logbook__list.innerHTML += `
             <div class="logbook__card" data-id="${lb.id}">
@@ -16,13 +28,16 @@ const Render_Cards = () => {
             </div>
             `
         });
+
+        const cards = document.querySelectorAll(".logbook__card > button")
+
+        cards.forEach((card) => {
+            card.addEventListener("click", Delete)
+        })
     }
 
-    const cards = document.querySelectorAll(".logbook__card > button")
 
-    cards.forEach((card) => {
-        card.addEventListener("click", Delete)
-    })
+
 }
 
 export { Render_Cards }
