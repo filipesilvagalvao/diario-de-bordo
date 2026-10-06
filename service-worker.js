@@ -1,4 +1,4 @@
-const CACHE_NAME = "diario-de-bordo-v2"
+const CACHE_NAME = "diario-de-bordo-v4"
 
 const URLS_CACHE = [
     "/",

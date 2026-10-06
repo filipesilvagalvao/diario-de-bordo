@@ -33,9 +33,11 @@ body {
     color: var(--color-text);
     min-height: 100vh;
     padding: 20px;
+    position: relative;
 }
 
 .logbook {
+    
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -174,4 +176,18 @@ body {
     background-color: var(--color-danger-hover);
 }
 
-
+.btn-install{
+    display: none;
+    position: fixed;
+    padding: 10px;
+    background-color: var(--color-primary);
+    color: #ffffff;
+    bottom: 15px;
+    right: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    &:hover{
+        background-color: var(--color-primary-hover);
+    }
+}
